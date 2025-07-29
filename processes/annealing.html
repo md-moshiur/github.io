@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annealing Process - Metallurgical Heat Treatment</title>
+    <meta name="description" content="Comprehensive guide to annealing process in metallurgy - mechanisms, types, applications, and microstructural changes">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-sync-alt text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Annealing Process</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    Softening heat treatment that reduces hardness, relieves internal stresses, and improves ductility through controlled heating and slow cooling
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">What is Annealing?</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Annealing is a heat treatment process that involves heating steel to a specific temperature, holding it at that temperature for a predetermined time, and then cooling it slowly (usually in the furnace). This process is designed to soften the material, relieve internal stresses, and improve machinability.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-thermometer-half text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Temperature Range</h3>
+                                <p class="text-gray-600">Typically 700-900°C depending on steel composition</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-clock text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Holding Time</h3>
+                                <p class="text-gray-600">1-8 hours depending on section thickness</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-snowflake text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Cooling Rate</h3>
+                                <p class="text-gray-600">Slow furnace cooling (10-50°C/hour)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Annealing Temperature Cycle</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="annealingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Annealing -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Types of Annealing</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Different annealing processes are used depending on the desired outcome and steel composition
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Full Annealing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-circle text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Full Annealing</h3>
+                    <p class="text-gray-600 mb-4">Complete softening treatment heating above the upper critical temperature (Ac3) followed by slow cooling.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">Ac3 + 30-50°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Pearlite + Ferrite</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Maximum softness</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stress Relief Annealing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Stress Relief</h3>
+                    <p class="text-gray-600 mb-4">Low-temperature treatment to relieve internal stresses without significant microstructural changes.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">550-650°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Unchanged</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Stress relief</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spheroidizing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-dot-circle text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Spheroidizing</h3>
+                    <p class="text-gray-600 mb-4">Process to produce spheroidal carbides for improved machinability in high-carbon steels.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">700-750°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Spheroidal carbides</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Machinability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Annealing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-cog text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Process Annealing</h3>
+                    <p class="text-gray-600 mb-4">Intermediate annealing during cold working to restore ductility for continued deformation.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">650-700°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Recrystallized</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Cold working</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normalizing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-balance-scale text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Normalizing</h3>
+                    <p class="text-gray-600 mb-4">Air cooling from austenitic temperature to refine grain structure and improve uniformity.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">Ac3 + 50°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Fine pearlite</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Grain refinement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subcritical Annealing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-thermometer-quarter text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Subcritical</h3>
+                    <p class="text-gray-600 mb-4">Annealing below the critical temperature to reduce hardness without phase transformation.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">Below Ac1</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Microstructure:</span>
+                            <span class="font-semibold">Tempered</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Application:</span>
+                            <span class="font-semibold">Partial softening</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Microstructural Changes -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Microstructural Changes</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Understanding the microstructural transformations during annealing
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Phase Transformations</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Heating Phase</h4>
+                                    <p class="text-gray-600">Pearlite → Austenite transformation above Ac1</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-green-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Soaking Phase</h4>
+                                    <p class="text-gray-600">Homogenization of austenite composition</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-red-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Cooling Phase</h4>
+                                    <p class="text-gray-600">Austenite → Coarse pearlite + ferrite</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Grain Structure Changes</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                                Grain growth during heating
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                                Recrystallization of deformed grains
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                                Formation of equiaxed grain structure
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                                Coarse pearlite formation during cooling
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Property Changes</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="propertyChart"></canvas>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-500">↓ 40-60%</div>
+                            <div class="text-gray-600">Hardness Reduction</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-500">↑ 50-80%</div>
+                            <div class="text-gray-600">Ductility Increase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Annealing is widely used across industries for various purposes
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cogs text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Machining Preparation</h3>
+                    <p class="text-gray-600 text-sm">Softening steel for easier machining operations</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hammer text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Cold Working</h3>
+                    <p class="text-gray-600 text-sm">Restoring ductility after cold deformation</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-wrench text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Stress Relief</h3>
+                    <p class="text-gray-600 text-sm">Removing residual stresses from welding or forming</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microscope text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Microstructure Control</h3>
+                    <p class="text-gray-600 text-sm">Achieving desired grain structure and uniformity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Parameters -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Process Parameters</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Key parameters that influence annealing effectiveness
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Steel Type</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Temperature (°C)</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Holding Time</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Cooling Rate</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Final Hardness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Low Carbon (0.1-0.3%C)</td>
+                                <td class="py-3 px-4">850-900</td>
+                                <td class="py-3 px-4">2-4 hours</td>
+                                <td class="py-3 px-4">25°C/hour</td>
+                                <td class="py-3 px-4">120-150 HB</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Medium Carbon (0.3-0.6%C)</td>
+                                <td class="py-3 px-4">800-850</td>
+                                <td class="py-3 px-4">3-6 hours</td>
+                                <td class="py-3 px-4">20°C/hour</td>
+                                <td class="py-3 px-4">150-200 HB</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">High Carbon (0.6-1.0%C)</td>
+                                <td class="py-3 px-4">750-800</td>
+                                <td class="py-3 px-4">4-8 hours</td>
+                                <td class="py-3 px-4">15°C/hour</td>
+                                <td class="py-3 px-4">180-220 HB</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Alloy Steel</td>
+                                <td class="py-3 px-4">800-900</td>
+                                <td class="py-3 px-4">4-10 hours</td>
+                                <td class="py-3 px-4">10-20°C/hour</td>
+                                <td class="py-3 px-4">200-250 HB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold">MetalHeat Academy</span>
+                </div>
+                <p class="text-gray-400 mb-4">Educational resource for metallurgical heat treatment processes</p>
+                <a href="../index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize annealing temperature chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('annealingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0h', '1h', '2h', '4h', '6h', '8h', '12h', '16h', '20h'],
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: [20, 400, 850, 850, 850, 600, 400, 200, 20],
+                            borderColor: 'rgb(59, 130, 246)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                },
+                                min: 0,
+                                max: 1000
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Property changes chart
+            const propCtx = document.getElementById('propertyChart');
+            if (propCtx) {
+                new Chart(propCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Hardness', 'Ductility', 'Toughness', 'Machinability', 'Formability'],
+                        datasets: [{
+                            label: 'Before Annealing',
+                            data: [80, 20, 30, 30, 25],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        }, {
+                            label: 'After Annealing',
+                            data: [40, 85, 70, 90, 85],
+                            borderColor: 'rgb(16, 185, 129)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

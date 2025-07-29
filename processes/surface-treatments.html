@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Surface Treatments - Metallurgical Heat Treatment</title>
+    <meta name="description" content="Comprehensive guide to advanced surface treatments - plasma treatments, PVD, CVD, and thermochemical processes">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-layer-group text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Advanced Surface Treatments</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    Modern surface modification techniques including plasma treatments, physical vapor deposition, and advanced thermochemical processes
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatment Types -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Surface Treatment Technologies</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Advanced surface modification techniques for enhanced performance and durability
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Plasma Treatments -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-blue-500">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Plasma Treatments</h3>
+                    <p class="text-gray-600 mb-4">Ion bombardment and plasma-enhanced diffusion processes for surface modification.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Plasma nitriding</li>
+                        <li>• Plasma carburizing</li>
+                        <li>• Ion implantation</li>
+                        <li>• Plasma cleaning</li>
+                    </ul>
+                </div>
+
+                <!-- PVD Coatings -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-green-500">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-spray-can text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">PVD Coatings</h3>
+                    <p class="text-gray-600 mb-4">Physical vapor deposition of thin, hard coatings for extreme performance.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• TiN (Titanium Nitride)</li>
+                        <li>• TiAlN (Titanium Aluminum Nitride)</li>
+                        <li>• CrN (Chromium Nitride)</li>
+                        <li>• Diamond-like carbon (DLC)</li>
+                    </ul>
+                </div>
+
+                <!-- CVD Processes -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-purple-500">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-atom text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">CVD Processes</h3>
+                    <p class="text-gray-600 mb-4">Chemical vapor deposition for thick, uniform coatings at high temperatures.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• TiC (Titanium Carbide)</li>
+                        <li>• Al₂O₃ (Aluminum Oxide)</li>
+                        <li>• SiC (Silicon Carbide)</li>
+                        <li>• Multilayer coatings</li>
+                    </ul>
+                </div>
+
+                <!-- Thermal Spray -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-red-500">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-fire text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Thermal Spray</h3>
+                    <p class="text-gray-600 mb-4">High-velocity coating application for thick, protective layers.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• HVOF (High Velocity Oxy-Fuel)</li>
+                        <li>• Plasma spray</li>
+                        <li>• Arc spray</li>
+                        <li>• Cold spray</li>
+                    </ul>
+                </div>
+
+                <!-- Laser Treatments -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-yellow-500">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-laser text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Laser Treatments</h3>
+                    <p class="text-gray-600 mb-4">Laser-based surface modification for precise control and localized treatment.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Laser hardening</li>
+                        <li>• Laser alloying</li>
+                        <li>• Laser cladding</li>
+                        <li>• Laser peening</li>
+                    </ul>
+                </div>
+
+                <!-- Diffusion Treatments -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6 border-l-4 border-indigo-500">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-exchange-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Diffusion Treatments</h3>
+                    <p class="text-gray-600 mb-4">Advanced thermochemical diffusion processes for enhanced surface properties.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Boronizing</li>
+                        <li>• Chromizing</li>
+                        <li>• Siliconizing</li>
+                        <li>• Vanadizing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Advanced surface treatments enable superior performance in demanding applications
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-plane text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Aerospace</h3>
+                    <p class="text-gray-600 text-sm">Turbine blades, engine components, and critical aerospace parts</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microchip text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Electronics</h3>
+                    <p class="text-gray-600 text-sm">Semiconductor equipment, electronic contacts, and precision components</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heartbeat text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Medical</h3>
+                    <p class="text-gray-600 text-sm">Surgical instruments, implants, and biocompatible surface treatments</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Tooling</h3>
+                    <p class="text-gray-600 text-sm">Cutting tools, dies, molds, and high-performance manufacturing tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold">MetalHeat Academy</span>
+                </div>
+                <p class="text-gray-400 mb-4">Educational resource for metallurgical heat treatment processes</p>
+                <a href="../index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

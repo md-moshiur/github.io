@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metallurgical Heat Treatment Processes - Educational Guide</title>
+    <meta name="description" content="Comprehensive educational resource on metallurgical heat treatment processes including annealing, quenching, tempering, nitriding, and carburizing">
+    <meta property="og:title" content="Metallurgical Heat Treatment Processes">
+    <meta property="og:description" content="Learn about steel heat treatment processes, microstructural changes, and industrial applications">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #f59e0b 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .process-icon { background: linear-gradient(45deg, #dc2626, #ea580c); }
+        .temp-gradient { background: linear-gradient(90deg, #dc2626, #ea580c, #f59e0b, #fbbf24, #fcd34d); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold text-gray-800">Bremen</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-gray-700 hover:text-blue-600 transition-colors">Overview</a>
+                    <a href="#processes" class="text-gray-700 hover:text-blue-600 transition-colors">Processes</a>
+                    <a href="#interactive" class="text-gray-700 hover:text-blue-600 transition-colors">Interactive</a>
+                    <a href="#applications" class="text-gray-700 hover:text-blue-600 transition-colors">Applications</a>
+                </div>
+                <button class="md:hidden flex items-center" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#overview" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Overview</a>
+                <a href="#processes" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Processes</a>
+                <a href="#interactive" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Interactive</a>
+                <a href="#applications" class="block px-3 py-2 text-gray-700 hover:bg-gray-100">Applications</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative text-white py-20 bg-cover bg-center" style="background-image: url('https://www.metalworkingworldmagazine.com/files/2017/07/foundry.jpg');">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-white">Heat Treatment Process</h1>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#processes" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Explore Processes
+                </a>
+                <a href="#interactive" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Interactive Tools
+                </a>
+            </div>
+            
+            <!-- Author Information -->
+            <div class="mt-12 text-center">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 max-w-md mx-auto">
+                    <p class="text-white text-sm mb-3 opacity-90">Created by</p>
+                    <a href="https://www.iwt-bremen.de/institut/mitarbeiter/detail/moshiur-rahman" 
+                       target="_blank" 
+                       class="text-white text-xl font-semibold hover:text-yellow-300 transition-colors block mb-3">
+                        Md Moshiur Rahman
+                    </a>
+                    <a href="https://www.linkedin.com/in/rahman-iwt/" 
+                       target="_blank" 
+                       class="inline-flex items-center text-white hover:text-blue-300 transition-colors">
+                        <i class="fab fa-linkedin mr-2"></i>
+                        LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Understanding Heat Treatment</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Heat treatment is a controlled process of heating and cooling metals to alter their physical and mechanical properties without changing their shape.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-thermometer-half text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Temperature Control</h3>
+                    <p class="text-gray-600">Precise heating to specific temperatures to achieve desired microstructural changes</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Time Management</h3>
+                    <p class="text-gray-600">Controlled holding times to allow complete phase transformations</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-snowflake text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Cooling Rate</h3>
+                    <p class="text-gray-600">Strategic cooling methods to achieve target mechanical properties</p>
+                </div>
+            </div>
+
+            <!-- Temperature Scale Visualization -->
+            <div class="bg-gray-50 p-8 rounded-xl">
+                <h3 class="text-2xl font-bold text-center mb-6">Heat Treatment Temperature Ranges</h3>
+                <div class="temp-gradient h-8 rounded-lg mb-4"></div>
+                <div class="flex justify-between text-sm text-gray-600">
+                    <span>200°C<br>Tempering</span>
+                    <span>500°C<br>Stress Relief</span>
+                    <span>750°C<br>Annealing</span>
+                    <span>900°C<br>Quenching</span>
+                    <span>1200°C<br>Austenitizing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heat Treatment Processes -->
+    <section id="processes" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Heat Treatment Processes</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Explore the fundamental heat treatment processes used in metallurgical engineering
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Annealing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-sync-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Annealing</h3>
+                    <p class="text-gray-600 mb-4">Softening treatment that reduces hardness and increases ductility through controlled heating and slow cooling.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">700-900°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling:</span>
+                            <span class="font-semibold">Furnace Cool</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Stress Relief</span>
+                        </div>
+                    </div>
+                    <a href="processes/annealing.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Quenching -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-tint text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quenching</h3>
+                    <p class="text-gray-600 mb-4">Rapid cooling process that hardens steel by forming martensite through fast heat extraction.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">850-950°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling:</span>
+                            <span class="font-semibold">Water/Oil</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Hardening</span>
+                        </div>
+                    </div>
+                    <a href="processes/quenching.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Tempering -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-balance-scale text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Tempering</h3>
+                    <p class="text-gray-600 mb-4">Secondary treatment that reduces brittleness while maintaining hardness through controlled reheating.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">150-650°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling:</span>
+                            <span class="font-semibold">Air Cool</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Toughening</span>
+                        </div>
+                    </div>
+                    <a href="processes/tempering.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Nitriding -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Nitriding</h3>
+                    <p class="text-gray-600 mb-4">Surface hardening process that introduces nitrogen to form hard nitride compounds in the surface layer.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">500-580°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Atmosphere:</span>
+                            <span class="font-semibold">Ammonia</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Surface Hard</span>
+                        </div>
+                    </div>
+                    <a href="processes/nitriding.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Carburizing -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-atom text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Carburizing</h3>
+                    <p class="text-gray-600 mb-4">Carbon enrichment process that increases surface carbon content for subsequent hardening treatments.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">900-950°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Atmosphere:</span>
+                            <span class="font-semibold">CO/CH4</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Case Harden</span>
+                        </div>
+                    </div>
+                    <a href="processes/carburizing.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Surface Treatments -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="process-icon w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-layer-group text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Surface Treatments</h3>
+                    <p class="text-gray-600 mb-4">Advanced surface modification techniques including plasma treatments and thermochemical processes.</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Methods:</span>
+                            <span class="font-semibold">Various</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Applications:</span>
+                            <span class="font-semibold">Wear/Corr</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Purpose:</span>
+                            <span class="font-semibold">Protection</span>
+                        </div>
+                    </div>
+                    <a href="processes/surface-treatments.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Interactive Learning Tools</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Explore heat treatment processes through interactive charts and simulations
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Temperature-Time Chart -->
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Heat Treatment Cycles</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <button onclick="showProcess('annealing')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">Annealing</button>
+                        <button onclick="showProcess('quenching')" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">Quenching</button>
+                        <button onclick="showProcess('tempering')" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors">Tempering</button>
+                        <button onclick="showProcess('nitriding')" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors">Nitriding</button>
+                    </div>
+                </div>
+
+                <!-- Hardness Comparison -->
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Hardness Comparison</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="hardnessChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p><strong>HRC:</strong> Rockwell C Scale</p>
+                        <p><strong>Values:</strong> Typical ranges for different treatments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Updated Learning Quiz Section -->
+<section id="learning-quiz" class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10">Heat Treatment Quiz</h2>
+    <div id="quiz-question" class="text-xl font-semibold mb-4"></div>
+    <div id="quiz-options" class="space-y-2 mb-4"></div>
+    <button onclick="nextQuiz()" class="px-4 py-2 bg-green-600 text-white rounded">Next</button>
+    <p id="quiz-score" class="mt-4 font-semibold"></p>
+  </div>
+</section>
+
+<script>
+const quizData = [
+  { q: "Which process involves rapid cooling?", options: ["Annealing", "Quenching", "Tempering"], a: "Quenching" },
+  { q: "Which process reduces brittleness?", options: ["Tempering", "Nitriding", "Carburizing"], a: "Tempering" },
+  { q: "What is the primary purpose of annealing?", options: ["Hardening", "Stress relief", "Surface hardening"], a: "Stress relief" },
+  { q: "Which atmosphere is used in nitriding?", options: ["Ammonia", "Hydrogen", "Carbon monoxide"], a: "Ammonia" },
+  { q: "At what temperature range is tempering typically done?", options: ["150-650°C", "850-950°C", "500-580°C"], a: "150-650°C" },
+  { q: "Which treatment increases surface carbon content?", options: ["Annealing", "Carburizing", "Tempering"], a: "Carburizing" },
+  { q: "Which process involves slow cooling in a furnace?", options: ["Quenching", "Annealing", "Tempering"], a: "Annealing" },
+  { q: "What does PVD stand for?", options: ["Physical Vapor Deposition", "Process Vapor Diffusion", "Plasma Vapor Diffusion"], a: "Physical Vapor Deposition" },
+  { q: "Which process uses water or oil as a coolant?", options: ["Tempering", "Nitriding", "Quenching"], a: "Quenching" },
+  { q: "Why is surface hardening important?", options: ["Increases corrosion", "Reduces cost", "Improves wear resistance"], a: "Improves wear resistance" }
+];
+
+let quizQuestions = [], quizIndex = 0, quizCorrect = 0;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function loadQuiz() {
+  quizQuestions = shuffle([...quizData]).slice(0, 10);
+  quizIndex = 0;
+  quizCorrect = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = quizQuestions[quizIndex];
+  document.getElementById("quiz-question").innerText = q.q;
+  const optionsDiv = document.getElementById("quiz-options");
+  optionsDiv.innerHTML = "";
+  shuffle([...q.options]).forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.className = "block w-full text-left px-4 py-2 bg-gray-200 rounded hover:bg-gray-300";
+    btn.onclick = () => {
+      if (opt === q.a) quizCorrect++;
+      quizIndex++;
+      if (quizIndex < quizQuestions.length) {
+        showQuestion();
+      } else {
+        document.getElementById("quiz-question").innerText = "Quiz Completed!";
+        document.getElementById("quiz-options").innerHTML = "";
+        document.getElementById("quiz-score").innerText = `Final Score: ${quizCorrect}/${quizQuestions.length}`;
+      }
+    };
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function nextQuiz() {
+  loadQuiz();
+}
+
+window.addEventListener("DOMContentLoaded", loadQuiz);
+</script>
+
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Heat treatment processes are essential across various industries for optimizing material properties
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-car text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Automotive</h3>
+                    <p class="text-gray-600 text-sm">Engine components, gears, springs, and structural parts requiring specific hardness and toughness</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-plane text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Aerospace</h3>
+                    <p class="text-gray-600 text-sm">Critical components requiring high strength-to-weight ratios and fatigue resistance</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Tool Making</h3>
+                    <p class="text-gray-600 text-sm">Cutting tools, dies, and molds requiring extreme hardness and wear resistance</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-industry text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Manufacturing</h3>
+                    <p class="text-gray-600 text-sm">General engineering components requiring optimized mechanical properties</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">Bremen</span>
+                    </div>
+                    <p class="text-gray-400">Educational resource for metallurgical heat treatment processes and applications.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Heat Treatments</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="processes/annealing.html" class="hover:text-white transition-colors">Annealing</a></li>
+                        <li><a href="processes/quenching.html" class="hover:text-white transition-colors">Quenching</a></li>
+                        <li><a href="processes/tempering.html" class="hover:text-white transition-colors">Tempering</a></li>
+                        <li><a href="processes/nitriding.html" class="hover:text-white transition-colors">Nitriding</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Surface Treatments</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="processes/carburizing.html" class="hover:text-white transition-colors">Carburizing</a></li>
+                        <li><a href="processes/surface-treatments.html" class="hover:text-white transition-colors">Plasma Treatments</a></li>
+                        <li><a href="processes/surface-treatments.html" class="hover:text-white transition-colors">Ion Implantation</a></li>
+                        <li><a href="processes/surface-treatments.html" class="hover:text-white transition-colors">PVD Coatings</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#interactive" class="hover:text-white transition-colors">Interactive Tools</a></li>
+                        <li><a href="#applications" class="hover:text-white transition-colors">Applications</a></li>
+                        <li><a href="#overview" class="hover:text-white transition-colors">Process Overview</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 . Educational content for metallurgical engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

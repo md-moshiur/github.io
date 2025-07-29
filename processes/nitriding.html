@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitriding Process - Metallurgical Heat Treatment</title>
+    <meta name="description" content="Comprehensive guide to nitriding process in metallurgy - surface hardening, nitride formation, and alloying element effects">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-shield-alt text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Nitriding Process</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    Surface hardening process that introduces nitrogen to form hard nitride compounds, achieving exceptional wear resistance without dimensional change
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">What is Nitriding?</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Nitriding is a thermochemical surface treatment process where nitrogen is diffused into the surface of steel at temperatures below the critical temperature. This process forms hard nitride compounds in the surface layer, significantly improving wear resistance, fatigue strength, and corrosion resistance.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-thermometer-half text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Temperature Range</h3>
+                                <p class="text-gray-600">500-580°C (below critical temperature)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-wind text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Atmosphere</h3>
+                                <p class="text-gray-600">Ammonia (NH₃) or nitrogen-bearing compounds</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-clock text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Process Time</h3>
+                                <p class="text-gray-600">10-100 hours depending on case depth required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Nitriding Temperature Profile</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="nitridingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nitriding Types -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Types of Nitriding</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Different nitriding methods offer varying process characteristics and applications
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gas Nitriding -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Gas Nitriding</h3>
+                    <p class="text-gray-600 mb-4">Traditional method using ammonia gas atmosphere for nitrogen diffusion.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Atmosphere:</span>
+                            <span class="font-semibold">NH₃ + H₂</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">500-580°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Time:</span>
+                            <span class="font-semibold">20-100 hours</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Case Depth:</span>
+                            <span class="font-semibold">0.1-0.7 mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plasma Nitriding -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Plasma Nitriding</h3>
+                    <p class="text-gray-600 mb-4">Advanced method using ionized nitrogen in a glow discharge atmosphere.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Atmosphere:</span>
+                            <span class="font-semibold">N₂ + H₂ plasma</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">350-580°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Time:</span>
+                            <span class="font-semibold">4-20 hours</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Case Depth:</span>
+                            <span class="font-semibold">0.05-0.5 mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salt Bath Nitriding -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-flask text-orange-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Salt Bath Nitriding</h3>
+                    <p class="text-gray-600 mb-4">Liquid nitriding using molten salt baths containing nitrogen-bearing compounds.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Medium:</span>
+                            <span class="font-semibold">Molten salts</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">520-580°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Time:</span>
+                            <span class="font-semibold">1-6 hours</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Case Depth:</span>
+                            <span class="font-semibold">0.01-0.3 mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alloying Element Effects -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Effects of Alloying Elements</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Alloying elements significantly influence nitriding behavior and the properties of the nitrided layer
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Nitride-Forming Elements</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-red-600 font-bold text-sm">Al</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Aluminum</h4>
+                                    <p class="text-gray-600 text-sm">Forms AlN - extremely hard nitrides, highest surface hardness</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-blue-600 font-bold text-sm">Cr</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Chromium</h4>
+                                    <p class="text-gray-600 text-sm">Forms CrN - stable nitrides, good wear resistance</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-green-600 font-bold text-sm">V</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Vanadium</h4>
+                                    <p class="text-gray-600 text-sm">Forms VN - very hard, fine precipitation strengthening</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                    <span class="text-purple-600 font-bold text-sm">Ti</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Titanium</h4>
+                                    <p class="text-gray-600 text-sm">Forms TiN - golden color, high hardness and thermal stability</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Other Alloying Elements</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600"><strong>Molybdenum (Mo):</strong></span>
+                                <span class="text-sm text-gray-500">Refines nitride distribution</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600"><strong>Nickel (Ni):</strong></span>
+                                <span class="text-sm text-gray-500">Reduces nitriding kinetics</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600"><strong>Manganese (Mn):</strong></span>
+                                <span class="text-sm text-gray-500">Forms Mn₄N nitrides</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600"><strong>Silicon (Si):</strong></span>
+                                <span class="text-sm text-gray-500">Minimal nitride formation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Hardness vs Alloying Elements</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="alloyChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p><strong>Note:</strong> Aluminum and Vanadium provide the highest surface hardness increases</p>
+                        <p><strong>Application:</strong> Nitralloy steels contain 1% Al for optimal nitriding response</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Microstructure and Properties -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Microstructure and Properties</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Understanding the nitrided layer structure and resulting mechanical properties
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Layer Structure</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">Compound Layer (White Layer)</h4>
+                                <p class="text-gray-600 text-sm">Outer layer containing Fe₂₋₃N and Fe₄N phases, 5-25 μm thick</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">Diffusion Zone</h4>
+                                <p class="text-gray-600 text-sm">Subsurface layer with nitrogen in solid solution and nitride precipitates</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">Core Material</h4>
+                                <p class="text-gray-600 text-sm">Unaffected base metal with original properties</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Property Improvements</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">1200+</div>
+                                <div class="text-sm text-gray-600">Surface Hardness (HV)</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">200%</div>
+                                <div class="text-sm text-gray-600">Fatigue Life Increase</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">50%</div>
+                                <div class="text-sm text-gray-600">Wear Resistance Boost</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-red-600">0.001%</div>
+                                <div class="text-sm text-gray-600">Dimensional Change</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Hardness Profile</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="hardnessProfile"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p><strong>Surface:</strong> Maximum hardness at surface decreasing with depth</p>
+                        <p><strong>Core:</strong> Maintains original hardness and toughness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Nitriding is essential for components requiring exceptional surface properties
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-car text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Automotive</h3>
+                    <p class="text-gray-600 text-sm">Crankshafts, camshafts, valve components, and gear systems</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-plane text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Aerospace</h3>
+                    <p class="text-gray-600 text-sm">Landing gear components, turbine parts, and precision mechanisms</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Tooling</h3>
+                    <p class="text-gray-600 text-sm">Dies, molds, cutting tools, and precision instruments</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-industry text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Industrial</h3>
+                    <p class="text-gray-600 text-sm">Hydraulic components, pump parts, and wear-resistant surfaces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Parameters -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nitriding Parameters</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Typical process parameters for different nitriding applications
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Steel Type</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Method</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Temperature</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Time</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Case Depth</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Surface Hardness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Nitralloy 135M</td>
+                                <td class="py-3 px-4">Gas</td>
+                                <td class="py-3 px-4">525°C</td>
+                                <td class="py-3 px-4">48-72h</td>
+                                <td class="py-3 px-4">0.4-0.6mm</td>
+                                <td class="py-3 px-4">1000-1200 HV</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">4140 Alloy Steel</td>
+                                <td class="py-3 px-4">Plasma</td>
+                                <td class="py-3 px-4">520°C</td>
+                                <td class="py-3 px-4">12-20h</td>
+                                <td class="py-3 px-4">0.2-0.4mm</td>
+                                <td class="py-3 px-4">800-1000 HV</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">H13 Tool Steel</td>
+                                <td class="py-3 px-4">Gas</td>
+                                <td class="py-3 px-4">550°C</td>
+                                <td class="py-3 px-4">24-48h</td>
+                                <td class="py-3 px-4">0.15-0.3mm</td>
+                                <td class="py-3 px-4">1100-1300 HV</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">316 Stainless</td>
+                                <td class="py-3 px-4">Plasma</td>
+                                <td class="py-3 px-4">400°C</td>
+                                <td class="py-3 px-4">8-16h</td>
+                                <td class="py-3 px-4">0.02-0.1mm</td>
+                                <td class="py-3 px-4">1200-1500 HV</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold">MetalHeat Academy</span>
+                </div>
+                <p class="text-gray-400 mb-4">Educational resource for metallurgical heat treatment processes</p>
+                <a href="../index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Nitriding temperature chart
+            const ctx = document.getElementById('nitridingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0h', '2h', '4h', '12h', '24h', '48h', '72h', '74h'],
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: [20, 525, 540, 540, 540, 540, 540, 20],
+                            borderColor: 'rgb(139, 92, 246)',
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            tension: 0.1,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                },
+                                min: 0,
+                                max: 600
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Alloying elements effect chart
+            const alloyCtx = document.getElementById('alloyChart');
+            if (alloyCtx) {
+                new Chart(alloyCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Plain Carbon', 'Cr Steel', 'Mo Steel', 'Al Steel', 'V Steel', 'Nitralloy'],
+                        datasets: [{
+                            label: 'Surface Hardness (HV)',
+                            data: [400, 800, 750, 1200, 1100, 1300],
+                            backgroundColor: [
+                                'rgba(107, 114, 128, 0.8)',
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(239, 68, 68, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(139, 92, 246, 0.8)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 1400,
+                                title: {
+                                    display: true,
+                                    text: 'Surface Hardness (HV)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Hardness profile chart
+            const profileCtx = document.getElementById('hardnessProfile');
+            if (profileCtx) {
+                new Chart(profileCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0'],
+                        datasets: [{
+                            label: 'Hardness (HV)',
+                            data: [1200, 1150, 1000, 850, 700, 550, 400, 300, 250],
+                            borderColor: 'rgb(139, 92, 246)',
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Distance from Surface (mm)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Hardness (HV)'
+                                },
+                                min: 200,
+                                max: 1300
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quenching Process - Metallurgical Heat Treatment</title>
+    <meta name="description" content="Comprehensive guide to quenching process in metallurgy - rapid cooling, martensite formation, and hardening mechanisms">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-tint text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Quenching Process</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    Rapid cooling heat treatment that transforms austenite to martensite, achieving maximum hardness in steel
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">What is Quenching?</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Quenching is a rapid cooling process where steel is heated to the austenitic temperature range and then cooled quickly using water, oil, or other quenchants. This rapid cooling prevents the formation of pearlite and bainite, instead forming martensite - a hard, brittle phase.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-thermometer-full text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Austenitizing Temperature</h3>
+                                <p class="text-gray-600">850-950°C depending on carbon content</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-tint text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Quenching Media</h3>
+                                <p class="text-gray-600">Water, oil, polymer solutions, or gas</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-bolt text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Cooling Rate</h3>
+                                <p class="text-gray-600">Critical cooling rate to avoid pearlite formation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Quenching Temperature Cycle</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="quenchingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quenching Media -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Quenching Media</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Different quenching media provide varying cooling rates and are selected based on steel composition and desired properties
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Water Quenching -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-tint text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Water</h3>
+                    <p class="text-gray-600 mb-4">Fastest cooling rate, highest hardness but increased risk of cracking and distortion.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling Rate:</span>
+                            <span class="font-semibold">Very Fast</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Hardness:</span>
+                            <span class="font-semibold">Maximum</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Distortion:</span>
+                            <span class="font-semibold text-red-600">High</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oil Quenching -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-oil-can text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Oil</h3>
+                    <p class="text-gray-600 mb-4">Moderate cooling rate with reduced cracking risk, suitable for most applications.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling Rate:</span>
+                            <span class="font-semibold">Moderate</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Hardness:</span>
+                            <span class="font-semibold">High</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Distortion:</span>
+                            <span class="font-semibold text-yellow-600">Medium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Polymer Quenching -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-flask text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Polymer</h3>
+                    <p class="text-gray-600 mb-4">Controllable cooling rate through concentration adjustment, good uniformity.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling Rate:</span>
+                            <span class="font-semibold">Adjustable</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Hardness:</span>
+                            <span class="font-semibold">Variable</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Distortion:</span>
+                            <span class="font-semibold text-green-600">Low</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gas Quenching -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Gas</h3>
+                    <p class="text-gray-600 mb-4">Slowest cooling rate, minimal distortion, suitable for complex geometries.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Cooling Rate:</span>
+                            <span class="font-semibold">Slow</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Hardness:</span>
+                            <span class="font-semibold">Moderate</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Distortion:</span>
+                            <span class="font-semibold text-green-600">Minimal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Martensite Formation -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Martensite Formation</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Understanding the mechanism of martensite formation during quenching
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Transformation Mechanism</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-red-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Rapid Cooling</h4>
+                                    <p class="text-gray-600">Austenite cooled below Ms temperature</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Shear Transformation</h4>
+                                    <p class="text-gray-600">Diffusionless transformation mechanism</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-purple-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Lattice Distortion</h4>
+                                    <p class="text-gray-600">FCC to BCT crystal structure change</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Critical Temperatures</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Ms (Martensite Start)</span>
+                                <span class="font-semibold text-red-600">350-450°C</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Mf (Martensite Finish)</span>
+                                <span class="font-semibold text-blue-600">150-250°C</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Critical Cooling Rate</span>
+                                <span class="font-semibold text-purple-600">200-1000°C/s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">TTT Diagram Representation</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="tttChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p><strong>Red Line:</strong> Critical cooling rate to avoid pearlite formation</p>
+                        <p><strong>Blue Area:</strong> Martensite formation region</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quenching Defects -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Quenching Defects and Solutions</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Common problems encountered during quenching and their prevention methods
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cracking -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quench Cracking</h3>
+                    <p class="text-gray-600 mb-4">Internal stresses exceed material strength causing crack formation.</p>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-gray-800">Causes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Excessive cooling rate</li>
+                            <li>• Sharp section changes</li>
+                            <li>• High carbon content</li>
+                        </ul>
+                        <h4 class="font-semibold text-gray-800 mt-3">Prevention:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Use milder quenchant</li>
+                            <li>• Interrupted quenching</li>
+                            <li>• Proper part design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Distortion -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-arrows-alt text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Distortion</h3>
+                    <p class="text-gray-600 mb-4">Dimensional changes due to non-uniform cooling and phase transformation.</p>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-gray-800">Causes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Uneven cooling rates</li>
+                            <li>• Asymmetric geometry</li>
+                            <li>• Improper fixturing</li>
+                        </ul>
+                        <h4 class="font-semibold text-gray-800 mt-3">Prevention:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Proper part orientation</li>
+                            <li>• Uniform cooling</li>
+                            <li>• Controlled atmosphere</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Soft Spots -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-circle text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Soft Spots</h3>
+                    <p class="text-gray-600 mb-4">Localized areas with insufficient hardness due to inadequate cooling.</p>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-gray-800">Causes:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Vapor blanket formation</li>
+                            <li>• Insufficient agitation</li>
+                            <li>• Contaminated quenchant</li>
+                        </ul>
+                        <h4 class="font-semibold text-gray-800 mt-3">Prevention:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Proper agitation</li>
+                            <li>• Clean quenchant</li>
+                            <li>• Correct temperature</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Quenching is essential for producing high-hardness components across various industries
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Cutting Tools</h3>
+                    <p class="text-gray-600 text-sm">Drills, milling cutters, and turning tools requiring maximum hardness</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cog text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Gears</h3>
+                    <p class="text-gray-600 text-sm">Automotive and industrial gears requiring wear resistance</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hammer text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Dies and Molds</h3>
+                    <p class="text-gray-600 text-sm">Manufacturing tools requiring high hardness and wear resistance</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Armor Components</h3>
+                    <p class="text-gray-600 text-sm">Ballistic protection requiring maximum hardness</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Parameters -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Quenching Parameters</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Critical parameters for successful quenching operations
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Steel Type</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Austenitizing Temp</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Quenchant</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Ms Temperature</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Final Hardness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">1045 Carbon Steel</td>
+                                <td class="py-3 px-4">850°C</td>
+                                <td class="py-3 px-4">Water/Oil</td>
+                                <td class="py-3 px-4">350°C</td>
+                                <td class="py-3 px-4">50-55 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">4140 Alloy Steel</td>
+                                <td class="py-3 px-4">870°C</td>
+                                <td class="py-3 px-4">Oil</td>
+                                <td class="py-3 px-4">300°C</td>
+                                <td class="py-3 px-4">55-60 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">D2 Tool Steel</td>
+                                <td class="py-3 px-4">1030°C</td>
+                                <td class="py-3 px-4">Air/Oil</td>
+                                <td class="py-3 px-4">250°C</td>
+                                <td class="py-3 px-4">60-65 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">O1 Tool Steel</td>
+                                <td class="py-3 px-4">800°C</td>
+                                <td class="py-3 px-4">Water/Brine</td>
+                                <td class="py-3 px-4">280°C</td>
+                                <td class="py-3 px-4">62-66 HRC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold">MetalHeat Academy</span>
+                </div>
+                <p class="text-gray-400 mb-4">Educational resource for metallurgical heat treatment processes</p>
+                <a href="../index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quenching temperature chart
+            const ctx = document.getElementById('quenchingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0s', '10s', '30s', '60s', '120s', '180s', '300s', '600s'],
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: [20, 900, 950, 950, 200, 100, 50, 20],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.1,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                },
+                                min: 0,
+                                max: 1000
+                            }
+                        }
+                    }
+                });
+            }
+
+            // TTT Diagram simulation
+            const tttCtx = document.getElementById('tttChart');
+            if (tttCtx) {
+                new Chart(tttCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0.1', '1', '10', '100', '1000', '10000'],
+                        datasets: [{
+                            label: 'Pearlite Start',
+                            data: [800, 650, 600, 550, 500, 450],
+                            borderColor: 'rgb(34, 197, 94)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                            fill: false
+                        }, {
+                            label: 'Pearlite Finish',
+                            data: [750, 600, 550, 500, 450, 400],
+                            borderColor: 'rgb(34, 197, 94)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                            fill: '-1'
+                        }, {
+                            label: 'Critical Cooling',
+                            data: [900, 400, 300, 200, 100, 50],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            fill: false,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'TTT Diagram (Simplified)'
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'logarithmic',
+                                title: {
+                                    display: true,
+                                    text: 'Time (seconds)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                },
+                                min: 0,
+                                max: 1000
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

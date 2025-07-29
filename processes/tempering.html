@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempering Process - Metallurgical Heat Treatment</title>
+    <meta name="description" content="Comprehensive guide to tempering process in metallurgy - martensite tempering, toughness improvement, and secondary hardening">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-balance-scale text-3xl text-white"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Tempering Process</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    Secondary heat treatment that reduces brittleness while maintaining hardness, optimizing the balance between strength and toughness
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">What is Tempering?</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Tempering is a heat treatment process performed after quenching to reduce the brittleness of martensite while maintaining acceptable hardness levels. The process involves reheating the quenched steel to temperatures below the critical temperature, followed by controlled cooling.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-thermometer-half text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Temperature Range</h3>
+                                <p class="text-gray-600">150-650°C depending on desired properties</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-clock text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Holding Time</h3>
+                                <p class="text-gray-600">1-4 hours for complete transformation</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-wind text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Cooling Method</h3>
+                                <p class="text-gray-600">Air cooling or furnace cooling</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Tempering Temperature Cycle</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="temperingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tempering Stages -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tempering Stages</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Tempering occurs in distinct stages, each characterized by specific microstructural changes and property modifications
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- First Stage -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-yellow-600 font-bold text-xl">I</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">First Stage</h3>
+                    <p class="text-gray-600 mb-4">Precipitation of ε-carbide from supersaturated martensite.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">80-200°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Carbide:</span>
+                            <span class="font-semibold">ε-carbide</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Effect:</span>
+                            <span class="font-semibold">Slight softening</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Stage -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-orange-600 font-bold text-xl">II</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Second Stage</h3>
+                    <p class="text-gray-600 mb-4">Decomposition of retained austenite to bainite.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">200-300°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Product:</span>
+                            <span class="font-semibold">Bainite</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Effect:</span>
+                            <span class="font-semibold">Hardness increase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Stage -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-red-600 font-bold text-xl">III</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Third Stage</h3>
+                    <p class="text-gray-600 mb-4">Formation of cementite and recovery of martensite.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">300-400°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Carbide:</span>
+                            <span class="font-semibold">Fe₃C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Effect:</span>
+                            <span class="font-semibold">Significant softening</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fourth Stage -->
+                <div class="bg-white rounded-xl shadow-lg card-hover p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-purple-600 font-bold text-xl">IV</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Fourth Stage</h3>
+                    <p class="text-gray-600 mb-4">Coarsening of cementite particles and recrystallization.</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Temperature:</span>
+                            <span class="font-semibold">400-700°C</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Process:</span>
+                            <span class="font-semibold">Coarsening</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Effect:</span>
+                            <span class="font-semibold">Further softening</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Changes -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Property Changes During Tempering</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Understanding how mechanical properties change with tempering temperature
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Hardness vs Temperature</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="hardnessChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Toughness vs Temperature</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="toughnessChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-50 p-8 rounded-xl">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Property Balance Optimization</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-thermometer-quarter text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Low Temperature</h4>
+                        <p class="text-gray-600 text-sm">150-250°C: Maximum hardness, reduced brittleness</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-thermometer-half text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Medium Temperature</h4>
+                        <p class="text-gray-600 text-sm">350-450°C: Balanced hardness and toughness</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-thermometer-three-quarters text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">High Temperature</h4>
+                        <p class="text-gray-600 text-sm">550-650°C: Maximum toughness, moderate hardness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secondary Hardening -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Secondary Hardening</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Special phenomenon in alloy steels where hardness increases during tempering at specific temperatures
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Mechanism</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Alloy Carbide Precipitation</h4>
+                                    <p class="text-gray-600">Formation of fine, hard carbides (Mo₂C, V₄C₃, Cr₂₃C₆)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-green-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Precipitation Hardening</h4>
+                                    <p class="text-gray-600">Fine carbides act as obstacles to dislocation movement</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-purple-500 rounded-full mr-4 mt-1"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Temperature Range</h4>
+                                    <p class="text-gray-600">Typically occurs between 500-600°C</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Affected Steel Types</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Tool steels (H13, D2, M2)
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                High-speed steels
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Maraging steels
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Some alloy steels with Mo, V, Cr
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Secondary Hardening Curve</h3>
+                    <div style="max-height: 400px;">
+                        <canvas id="secondaryChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p><strong>Peak:</strong> Maximum secondary hardening at ~550°C</p>
+                        <p><strong>Application:</strong> Tool steels for high-temperature service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tempering Applications -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Industrial Applications</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Tempering is crucial for achieving optimal properties in various engineering applications
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-car text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Automotive Springs</h3>
+                    <p class="text-gray-600 text-sm">Leaf and coil springs requiring high strength and fatigue resistance</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Hand Tools</h3>
+                    <p class="text-gray-600 text-sm">Chisels, punches, and hammers needing toughness with hardness</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cog text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Machine Components</h3>
+                    <p class="text-gray-600 text-sm">Shafts, gears, and bearings requiring balanced properties</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-industry text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Structural Steel</h3>
+                    <p class="text-gray-600 text-sm">Construction components requiring ductility and strength</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Parameters -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tempering Parameters</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Typical tempering conditions for different steel types and applications
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Application</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Steel Type</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Temperature</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Time</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Final Hardness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Cutting Tools</td>
+                                <td class="py-3 px-4">O1, W1</td>
+                                <td class="py-3 px-4">150-200°C</td>
+                                <td class="py-3 px-4">2 hours</td>
+                                <td class="py-3 px-4">58-62 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Springs</td>
+                                <td class="py-3 px-4">5160, 9260</td>
+                                <td class="py-3 px-4">400-450°C</td>
+                                <td class="py-3 px-4">1-2 hours</td>
+                                <td class="py-3 px-4">45-50 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Gears</td>
+                                <td class="py-3 px-4">4140, 8620</td>
+                                <td class="py-3 px-4">200-300°C</td>
+                                <td class="py-3 px-4">2-3 hours</td>
+                                <td class="py-3 px-4">50-55 HRC</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">Structural</td>
+                                <td class="py-3 px-4">1045, 1080</td>
+                                <td class="py-3 px-4">500-600°C</td>
+                                <td class="py-3 px-4">2-4 hours</td>
+                                <td class="py-3 px-4">25-35 HRC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
+                    <span class="text-xl font-bold">MetalHeat Academy</span>
+                </div>
+                <p class="text-gray-400 mb-4">Educational resource for metallurgical heat treatment processes</p>
+                <a href="../index.html" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tempering temperature chart
+            const ctx = document.getElementById('temperingChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['0h', '0.5h', '1h', '2h', '3h', '4h', '5h', '6h'],
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: [20, 200, 400, 400, 400, 300, 200, 20],
+                            borderColor: 'rgb(16, 185, 129)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                },
+                                min: 0,
+                                max: 500
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Hardness vs temperature chart
+            const hardnessCtx = document.getElementById('hardnessChart');
+            if (hardnessCtx) {
+                new Chart(hardnessCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['150', '200', '300', '400', '500', '600', '700'],
+                        datasets: [{
+                            label: 'Hardness (HRC)',
+                            data: [60, 58, 52, 45, 35, 28, 22],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Hardness (HRC)'
+                                },
+                                min: 15,
+                                max: 65
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Toughness vs temperature chart
+            const toughnessCtx = document.getElementById('toughnessChart');
+            if (toughnessCtx) {
+                new Chart(toughnessCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['150', '200', '300', '400', '500', '600', '700'],
+                        datasets: [{
+                            label: 'Impact Energy (J)',
+                            data: [10, 15, 35, 65, 95, 120, 140],
+                            borderColor: 'rgb(16, 185, 129)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Impact Energy (J)'
+                                },
+                                min: 0,
+                                max: 150
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Secondary hardening chart
+            const secondaryCtx = document.getElementById('secondaryChart');
+            if (secondaryCtx) {
+                new Chart(secondaryCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['200', '300', '400', '500', '550', '600', '650', '700'],
+                        datasets: [{
+                            label: 'Tool Steel',
+                            data: [58, 52, 48, 52, 56, 54, 48, 42],
+                            borderColor: 'rgb(139, 92, 246)',
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            tension: 0.4,
+                            fill: false
+                        }, {
+                            label: 'Carbon Steel',
+                            data: [58, 52, 45, 38, 32, 28, 24, 20],
+                            borderColor: 'rgb(107, 114, 128)',
+                            backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                            tension: 0.4,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Hardness (HRC)'
+                                },
+                                min: 15,
+                                max: 65
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
