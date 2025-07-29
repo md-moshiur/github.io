@@ -26,7 +26,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
-                    <span class="text-xl font-bold text-gray-800">MetalHeat Academy</span>
+                    <span class="text-xl font-bold text-gray-800">Bremen</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#overview" class="text-gray-700 hover:text-blue-600 transition-colors">Overview</a>
@@ -51,15 +51,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg text-white py-20">
+    <section class="relative text-white py-20 bg-cover bg-center" style="background-image: url('https://www.metalworkingworldmagazine.com/files/2017/07/foundry.jpg');">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  <div class="relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                Metallurgical Heat Treatment
-                <span class="block text-yellow-300">Processes</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                Master the science of steel transformation through controlled heating and cooling processes
-            </p>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-white">Heat Treatment Process</h1>
+            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#processes" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Explore Processes
@@ -87,7 +84,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Overview Section -->
     <section id="overview" class="py-16 bg-white">
@@ -347,6 +345,75 @@
             </div>
         </div>
     </section>
+<!-- Updated Learning Quiz Section -->
+<section id="learning-quiz" class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10">Heat Treatment Quiz</h2>
+    <div id="quiz-question" class="text-xl font-semibold mb-4"></div>
+    <div id="quiz-options" class="space-y-2 mb-4"></div>
+    <button onclick="nextQuiz()" class="px-4 py-2 bg-green-600 text-white rounded">Next</button>
+    <p id="quiz-score" class="mt-4 font-semibold"></p>
+  </div>
+</section>
+
+<script>
+const quizData = [
+  { q: "Which process involves rapid cooling?", options: ["Annealing", "Quenching", "Tempering"], a: "Quenching" },
+  { q: "Which process reduces brittleness?", options: ["Tempering", "Nitriding", "Carburizing"], a: "Tempering" },
+  { q: "What is the primary purpose of annealing?", options: ["Hardening", "Stress relief", "Surface hardening"], a: "Stress relief" },
+  { q: "Which atmosphere is used in nitriding?", options: ["Ammonia", "Hydrogen", "Carbon monoxide"], a: "Ammonia" },
+  { q: "At what temperature range is tempering typically done?", options: ["150-650°C", "850-950°C", "500-580°C"], a: "150-650°C" },
+  { q: "Which treatment increases surface carbon content?", options: ["Annealing", "Carburizing", "Tempering"], a: "Carburizing" },
+  { q: "Which process involves slow cooling in a furnace?", options: ["Quenching", "Annealing", "Tempering"], a: "Annealing" },
+  { q: "What does PVD stand for?", options: ["Physical Vapor Deposition", "Process Vapor Diffusion", "Plasma Vapor Diffusion"], a: "Physical Vapor Deposition" },
+  { q: "Which process uses water or oil as a coolant?", options: ["Tempering", "Nitriding", "Quenching"], a: "Quenching" },
+  { q: "Why is surface hardening important?", options: ["Increases corrosion", "Reduces cost", "Improves wear resistance"], a: "Improves wear resistance" }
+];
+
+let quizQuestions = [], quizIndex = 0, quizCorrect = 0;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function loadQuiz() {
+  quizQuestions = shuffle([...quizData]).slice(0, 10);
+  quizIndex = 0;
+  quizCorrect = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = quizQuestions[quizIndex];
+  document.getElementById("quiz-question").innerText = q.q;
+  const optionsDiv = document.getElementById("quiz-options");
+  optionsDiv.innerHTML = "";
+  shuffle([...q.options]).forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.className = "block w-full text-left px-4 py-2 bg-gray-200 rounded hover:bg-gray-300";
+    btn.onclick = () => {
+      if (opt === q.a) quizCorrect++;
+      quizIndex++;
+      if (quizIndex < quizQuestions.length) {
+        showQuestion();
+      } else {
+        document.getElementById("quiz-question").innerText = "Quiz Completed!";
+        document.getElementById("quiz-options").innerHTML = "";
+        document.getElementById("quiz-score").innerText = `Final Score: ${quizCorrect}/${quizQuestions.length}`;
+      }
+    };
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function nextQuiz() {
+  loadQuiz();
+}
+
+window.addEventListener("DOMContentLoaded", loadQuiz);
+</script>
+
 
     <!-- Applications Section -->
     <section id="applications" class="py-16 bg-gray-50">
@@ -398,7 +465,7 @@
                 <div>
                     <div class="flex items-center mb-4">
                         <i class="fas fa-fire text-2xl text-orange-500 mr-3"></i>
-                        <span class="text-xl font-bold">MetalHeat Academy</span>
+                        <span class="text-xl font-bold text-gray-800">Bremen</span>
                     </div>
                     <p class="text-gray-400">Educational resource for metallurgical heat treatment processes and applications.</p>
                 </div>
@@ -430,7 +497,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 MetalHeat Academy. Educational content for metallurgical engineering.</p>
+                <p>&copy; 2025 . Educational content for metallurgical engineering.</p>
             </div>
         </div>
     </footer>
